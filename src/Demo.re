@@ -11,13 +11,16 @@ module Test = [%graphql {|
 
 module Test2 = [%graphql
   {|
-  query testQuery($id: ID!) {
+  query testQuery($skip: Boolean!) {
      user {
         name
       }
-      allUsers {
+      allUsers(skip: $skip) {
         id
       }
   }
   |}
 ];
+
+let parse = Test.parse;
+let parse2 = Test2.parse;
